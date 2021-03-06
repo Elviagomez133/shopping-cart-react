@@ -1,0 +1,31 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+	box-sizing: inherit;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	display: flex;
+}
+
+nav li {
+	flex: 1;
+	text-align: center;
+	display: flex;
+	justify-content: flex;
+	align-items: center;
+}
+
+.card {
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+.container {
+	padding: 2px 16px;
+}
