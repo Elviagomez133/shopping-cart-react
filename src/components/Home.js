@@ -12,10 +12,10 @@ class Home extends Component {
                 <div className="card" key={book.id}>
                     <div className="card-image">
                         <img src={book.img} alt={book.title}/>
-                        <span className="card-title">{book.title}</span>
-                        <span to="/" className="btn-add">add-icon</span>
+                        <span to="/" className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">add</i></span>
                     </div>
                     <div className="card-content">
+                        <p className="card-title">{book.title}</p>
                         <p>{book.author}</p>
                         <p><b>Price: {book.price}$</b></p>
                     </div>
@@ -25,7 +25,7 @@ class Home extends Component {
         return (
             <div className="container">
                 <h3>Our Books of the Month</h3>
-                <div>
+                <div className="box">
                     {booksList}
                 </div>
             </div>
