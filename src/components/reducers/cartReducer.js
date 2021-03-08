@@ -2,6 +2,7 @@ import Book1 from '../../images/photo-1614544048536-0d28caf77f41.jpg';
 import Book2 from '../../images/photo-1610558495616-9ce40f904dde.jpg';
 import Book3 from '../../images/sincerely-media-CXYPfveiuis-unsplash.jpg';
 import Book4 from '../../images/thought-catalog-DxAzOKSiPoE-unsplash.jpg';
+import { ADD_TO_CART} from '../actions/action-types/cart-actions';
 
 //Reducers specify how the application’s state changes in response to actions sent to the store.
 const initState = {
@@ -35,12 +36,36 @@ const initState = {
             img:Book4
         },
     ],
-    addedItems: [],
+    addedBooks: [],
     total: 0
 }
 
 const cartReducer = (state = initState,action) => {
-    return state;
+    //Inside Home Component
+    if(action.type === ADD_TO_CART) {
+        let addedBook = state.books.find(book => book.id === action.id)
+        //check if the action id exists in the addedBooks
+        let existed_book = state.addedBooks.find(book => action.id === book.id)
+        if(existed_book) {
+            addedBook.quantity += 1
+            return{
+                ...state,
+                total: state.total + addedBook.price
+            }
+        } else {
+            addedBook.quantity = 1;
+            //Calculating the total
+            let newTotal = state.total + addedBook.price
+            return {
+                ...state,
+                addedBooks: [...state.addedBooks, addedBook],
+                total: newTotal
+            }
+        }
+    }
+    else {
+        return state
+    }
 }
 
 export default cartReducer;

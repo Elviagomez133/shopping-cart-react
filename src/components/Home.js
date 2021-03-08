@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { addToCart } from './actions/cartActions';
 
 class Home extends Component {
     handleClick = (id) => {
@@ -12,7 +13,7 @@ class Home extends Component {
                 <div className="card" key={book.id}>
                     <div className="card-image">
                         <img src={book.img} alt={book.title}/>
-                        <span to="/" className="btn-floating halfway-fab waves-effect waves-light green"><i className="material-icons">add</i></span>
+                        <span to="/" className="btn-floating halfway-fab waves-effect waves-light green" onClick={()=>{this.handleClick(book.id)}}><i className="material-icons">add</i></span>
                     </div>
                     <div className="card-content">
                         <p className="card-title">{book.title}</p>
@@ -39,15 +40,15 @@ const mapStateToProps = (state) => {
     }
 }
 
-// const mapStateToProps = (dispatch) => {
-//     return {
-//         addToCart: (id) => { dispatch(addToCart(id))}
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (id) => { dispatch(addToCart(id))}
+    }
+}
 
 
 //Connect the Page who is going to display, with
 //the things the page need to display
 //the mapState takes the state in the reducer
 //an pass it as props in the file in order to manipulate it.
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
