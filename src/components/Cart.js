@@ -1,8 +1,25 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { removeBook, addQuantity, subtractQuantity} from './actions/cartActions';
 
 class Cart extends Component {
+
+    //to remove item
+    handleRemove = (id) => {
+        this.props.removeBook(id);
+    }
+
+    //add item
+    handleAddQuantity = (id) => {
+        this.props.addQuantity(id);
+    }
+
+    //substract from the quantity
+    handleSubtractQuantity = (id) => {
+        this.props.subtractQuantity(id);
+    }
+
 
     render() {
         let addedBooks = this.props.books.length ?
@@ -21,10 +38,10 @@ class Cart extends Component {
                                 <b>Quantity: {book.quantity}</b>
                             </p>
                             <div className="add-remove">
-                                <Link to="/cart"><i className="material-icons">arrow_drop_up</i></Link>
-                                <Link to="/cart"><i className="material-icons">arrow_drop_down</i></Link>
+                                <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleAddQuantity(book.id)}}>arrow_drop_up</i></Link>
+                                <Link to="/cart"><i className="material-icons" onClick={()=>{this.handleSubtractQuantity(book.id)}}>arrow_drop_down</i></Link>
                             </div>
-                            <button className="waves-effect waves-light btn pink remove">Remove</button>
+                            <button className="waves-effect waves-light btn pink remove" onClick={()=>{this.handleRemove(book.id)}}>Remove</button>
                         </div>
                     </li>
                 )
