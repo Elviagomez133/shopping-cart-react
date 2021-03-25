@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { connect } from 'react-redux'
-//import { addShipping } from './actions/cartActions'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 class Recipe extends Component{
     
     componentWillUnmount() {

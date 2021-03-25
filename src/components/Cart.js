@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { removeBook, addQuantity, subtractQuantity} from './actions/cartActions';
+import Recipe from './Recipe';
 
 class Cart extends Component {
 
@@ -58,6 +59,7 @@ class Cart extends Component {
                             {addedBooks}
                         </ul>
                     </div>
+                    <Recipe />
                 </div>
             )
         }
@@ -69,4 +71,4 @@ const mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps)(Cart)
+export default connect(mapStateToProps, {removeBook, addQuantity, subtractQuantity})(Cart)

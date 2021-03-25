@@ -2,7 +2,7 @@ import Book1 from '../../images/photo-1614544048536-0d28caf77f41.jpg';
 import Book2 from '../../images/photo-1610558495616-9ce40f904dde.jpg';
 import Book3 from '../../images/sincerely-media-CXYPfveiuis-unsplash.jpg';
 import Book4 from '../../images/thought-catalog-DxAzOKSiPoE-unsplash.jpg';
-import { ADD_TO_CART, REMOVE_BOOK, SUB_QUANTITY, ADD_QUANTITY} from '../actions/action-types/cart-actions';
+import { ADD_TO_CART, REMOVE_BOOK, SUB_QUANTITY, ADD_QUANTITY, ADD_SHIPPING} from '../actions/action-types/cart-actions';
 
 //Reducers specify how the application’s state changes in response to actions sent to the store.
 const initState = {
@@ -105,6 +105,18 @@ const cartReducer = (state = initState,action) => {
                 ...state,
                 total: newTotal
             }
+        }
+    }
+    if(action.type === ADD_SHIPPING) {
+        return {
+            ...state,
+            total: state.total + 6
+        }
+    }
+    if(action.type === 'SUB-SHIPPING') {
+        return {
+            ...state,
+            total: state.total - 6
         }
     }
     return state    
